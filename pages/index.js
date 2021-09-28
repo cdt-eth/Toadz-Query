@@ -35,13 +35,13 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Toadz Query</title>
+        <title>ToadzVerse</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to <span>Toadz Query 🔎🐸</span>
+          Welcome to the <span>Lily Pad</span>
         </h1>
         <div className="grid">
           <FormModal
@@ -51,23 +51,23 @@ export default function Home() {
           />
 
           <a
-            href="https://www.lootproject.com/resources"
+            href="https://cryptoadz.io/"
             className="card"
             target="_blank"
             rel="noreferrer"
           >
             <h3>Derivatives &rarr;</h3>
-            <p>See what the community is building for $LOOT!</p>
+            <p>See what the Cryptoadz community is building!</p>
           </a>
 
           <a
-            href="https://thegrand.exchange/"
+            href="https://www.sockz.exchange/"
             className="card"
             target="_blank"
             rel="noreferrer"
           >
-            <h3>The Grand Exchange &rarr;</h3>
-            <p>Discover loots, realms, ability scores, and more.</p>
+            <h3>Sockz Exchange &rarr;</h3>
+            <p>Mint your sockz here.</p>
           </a>
 
           <a
@@ -76,20 +76,37 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            <h3>$LOOT Smart Contract &rarr;</h3>
-            <p>Learn more by seeing exploring the deployed smart contract</p>
+            <h3>Cryptoadz Smart Contract &rarr;</h3>
+            <p>Learn more by seeing exploring the deployed smart contract.</p>
           </a>
         </div>
       </main>
 
       <footer>
-        <a
-          href="https://twitter.com/mehranhydary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Created with love by {" @mehranhydary 🤍 🖤"}
-        </a>
+        <div className="credit">
+          <div>
+            Forked from
+            <a
+              href="https://twitter.com/mehranhydary"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="credit"
+            >
+              @mehranhydary
+            </a>
+          </div>
+          <div>
+            Built by
+            <a
+              href="https://twitter.com/cdt_works"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="credit"
+            >
+              @cdt_works
+            </a>
+          </div>
+        </div>
       </footer>
 
       <style jsx>{`
@@ -120,14 +137,7 @@ export default function Home() {
           align-items: center;
         }
 
-        footer img {
-          margin-left: 0.5rem;
-        }
-
         footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
         }
 
         a {
@@ -221,6 +231,18 @@ export default function Home() {
             width: 100%;
             flex-direction: column;
           }
+        }
+
+        .credit {
+          text-align: center;
+        }
+        .credit a {
+          padding-left: 3px;
+        }
+        .credit a:hover {
+          color: #0070f3;
+          border-color: #0070f3;
+          cursor: pointer;
         }
       `}</style>
 

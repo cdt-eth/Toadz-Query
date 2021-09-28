@@ -56,8 +56,11 @@ function FormModal({ lootObject, sockzId, checkSockz }) {
   return (
     <>
       <div onClick={openModal} className="card-special">
-        <h3>Check Toadz &rarr;</h3>
-        <p>Click and provide a Cryptoadz id to see what's available.</p>
+        <img src="toadz_sockz.png" alt="sockz" />
+        {/* <h3>Check Sockz &rarr;</h3> */}
+        <p>
+          Click and provide a Cryptoadz id to see if Sockz have been claimed.
+        </p>
       </div>
 
       <Modal
@@ -102,8 +105,8 @@ function FormModal({ lootObject, sockzId, checkSockz }) {
           text-align: left;
           color: inherit;
           text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
+          /* border: 1px solid #eaeaea;
+          border-radius: 10px; */
           transition: color 0.15s ease, border-color 0.15s ease;
         }
 
