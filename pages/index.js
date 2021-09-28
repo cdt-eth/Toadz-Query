@@ -1,32 +1,32 @@
-import Head from 'next/head'
-import FormModal from './FormModal';
-import { useEffect, useState } from 'react';
+import Head from "next/head";
+import FormModal from "./FormModal";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [id, setId] = useState(7756);
   const [lootObject, setLootObject] = useState({});
-  
+
   useEffect(() => {
     checkLoot(id);
   }, []);
-  
+
   const checkLoot = async (id) => {
     const settings = {
-      method: 'GET',
+      method: "GET",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    }
+        "Content-Type": "application/json",
+      },
+    };
     try {
       const fetchResponse = await fetch(`/api/loot/${id}`, settings);
       const data = await fetchResponse.json();
       console.log(data);
       setLootObject(data);
     } catch {
-      console.error('Error fetching loot information');
+      console.error("Error fetching loot information");
     }
-  }
+  };
   return (
     <div className="container">
       <Head>
@@ -50,10 +50,7 @@ export default function Home() {
             <p>See what the community is building for $LOOT!</p>
           </a>
 
-          <a
-            href="https://thegrand.exchange/"
-            className="card"
-          >
+          <a href="https://thegrand.exchange/" className="card">
             <h3>The Grand Exchange &rarr;</h3>
             <p>Discover loots, realms, ability scores, and more.</p>
           </a>
@@ -63,9 +60,7 @@ export default function Home() {
             className="card"
           >
             <h3>$LOOT Smart Contract &rarr;</h3>
-            <p>
-              Learn more by seeing exploring the deployed smart contract
-            </p>
+            <p>Learn more by seeing exploring the deployed smart contract</p>
           </a>
         </div>
       </main>
@@ -76,7 +71,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Created with love by {' @mehranhydary 🤍 🖤'}
+          Created with love by {" @mehranhydary 🤍 🖤"}
         </a>
       </footer>
 
@@ -227,5 +222,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
