@@ -1,34 +1,34 @@
-import React from 'react'
-import Modal from 'react-modal'
+import React from "react";
+import { useState } from "react";
+import Modal from "react-modal";
 
 const customStyles = {
   content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    margin: '1rem',
-    flexBasis: '45%',
-    padding: '1.5rem',
-    textAlign: 'left',
-    color: 'inherit',
-    textDecoration: 'none',
-    border: '1px solid #eaeaea',
-    borderRadius: '10px',
-    transition: 'color 0.15s ease, border-color 0.15s ease',
-    width: '400px',
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    margin: "1rem",
+    flexBasis: "45%",
+    padding: "1.5rem",
+    textAlign: "left",
+    color: "inherit",
+    textDecoration: "none",
+    border: "1px solid #eaeaea",
+    borderRadius: "10px",
+    transition: "color 0.15s ease, border-color 0.15s ease",
+    width: "400px",
   },
-
 };
 
-Modal.setAppElement('#__next')
+Modal.setAppElement("#__next");
 
-function FormModal({ lootObject, lootId, checkLoot }) {
+function FormModal({ lootObject, sockzId, checkSockz }) {
   let subtitle;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [id, setId] = React.useState(lootId);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [id, setId] = useState(sockzId);
 
   function openModal() {
     setIsOpen(true);
@@ -36,7 +36,7 @@ function FormModal({ lootObject, lootId, checkLoot }) {
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = '#000';
+    subtitle.style.color = "#000";
   }
 
   function closeModal() {
@@ -48,30 +48,52 @@ function FormModal({ lootObject, lootId, checkLoot }) {
     setId(e.target.value);
   }
 
+  function handleClick(e) {
+    e.preventDefault();
+    checkSockz(id);
+  }
+
   return (
     <>
-      <p onClick={openModal} className="card-special">
-        <h3>Check $LOOT &rarr;</h3>
-        <p>Click and provide a $LOOT id to see what's available.</p>
-      </p>
+      <div onClick={openModal} className="card-special">
+        <h3>Check Toadz &rarr;</h3>
+        <p>Click and provide a Cryptoadz id to see what's available.</p>
+      </div>
+
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="$LOOT Tracker"
+        contentLabel="Sockz Tracker"
       >
-        <h3 ref={(_subtitle) => (subtitle = _subtitle)}>Enter $LOOT id</h3>
+        <h3 ref={(_subtitle) => (subtitle = _subtitle)}>Enter Cryptoadz id</h3>
+
         <p>Currently querying {id}</p>
+
         <form>
           <input onChange={handleChange} value={id} className="input" />
-          <p>{!lootObject?.realmMinted ? "Realm available ✅" : "Realm not available ❌"}</p>
-          <p>{!lootObject?.activityScoreMinted ? "Activity score available ✅" : "Activity not available ❌"}</p>
-          <p>{!lootObject?.characterMinted ? "Character available ✅" : "Character not available ❌"}</p>
-          <p>{!lootObject?.agldMinted ? "Adventure gold available ✅" : "Adventure gold not available ❌"}</p>
-          <div className="button" onClick={() => checkLoot(id)}>Search</div>
+          <p>
+            {!lootObject?.sockzMinted
+              ? "Sockz available ✅"
+              : "Sockz not available ❌"}
+            <br />
+            <a
+              href={`https://opensea.io/assets/0x1cb1a5e65610aeff2551a50f76a87a7d3fb649c6/${id}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View on OpenSea
+            </a>{" "}
+            🌊
+          </p>
+
+          <div className="button" onClick={handleClick}>
+            Search
+          </div>
         </form>
       </Modal>
+
       <style jsx>{`
         .card-special {
           margin: 1rem;
@@ -144,7 +166,7 @@ function FormModal({ lootObject, lootId, checkLoot }) {
         }
       `}</style>
     </>
-  )
+  );
 }
 
-export default FormModal
+export default FormModal;

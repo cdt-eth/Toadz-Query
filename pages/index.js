@@ -3,14 +3,14 @@ import FormModal from "./FormModal";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [id, setId] = useState(7756);
+  const [id, setId] = useState(3470);
   const [lootObject, setLootObject] = useState({});
 
   useEffect(() => {
-    checkLoot(id);
-  }, []);
+    checkSockz(id);
+  }, [id]);
 
-  const checkLoot = async (id) => {
+  const checkSockz = async (id) => {
     const settings = {
       method: "GET",
       headers: {
@@ -18,46 +18,63 @@ export default function Home() {
         "Content-Type": "application/json",
       },
     };
+
     try {
-      const fetchResponse = await fetch(`/api/loot/${id}`, settings);
+      const fetchResponse = await fetch(`/api/sockz/${id}`, settings);
+
       const data = await fetchResponse.json();
-      console.log(data);
+
       setLootObject(data);
     } catch {
       console.error("Error fetching loot information");
     }
   };
+
+  console.log("lootobject", lootObject);
+
   return (
     <div className="container">
       <Head>
-        <title>Loot Query 🔎</title>
+        <title>Toadz Query</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to <span>Loot Query 🔎</span>
+          Welcome to <span>Toadz Query 🔎🐸</span>
         </h1>
         <div className="grid">
           <FormModal
             lootObject={lootObject}
-            lootId={id}
-            checkLoot={checkLoot}
+            sockzId={id}
+            checkSockz={checkSockz}
           />
 
-          <a href="https://www.lootproject.com/resources" className="card">
+          <a
+            href="https://www.lootproject.com/resources"
+            className="card"
+            target="_blank"
+            rel="noreferrer"
+          >
             <h3>Derivatives &rarr;</h3>
             <p>See what the community is building for $LOOT!</p>
           </a>
 
-          <a href="https://thegrand.exchange/" className="card">
+          <a
+            href="https://thegrand.exchange/"
+            className="card"
+            target="_blank"
+            rel="noreferrer"
+          >
             <h3>The Grand Exchange &rarr;</h3>
             <p>Discover loots, realms, ability scores, and more.</p>
           </a>
 
           <a
-            href="https://etherscan.io/address/0xff9c1b15b16263c61d017ee9f65c50e4ae0113d7"
+            href="https://etherscan.io/address/0x1cb1a5e65610aeff2551a50f76a87a7d3fb649c6"
             className="card"
+            target="_blank"
+            rel="noreferrer"
           >
             <h3>$LOOT Smart Contract &rarr;</h3>
             <p>Learn more by seeing exploring the deployed smart contract</p>
